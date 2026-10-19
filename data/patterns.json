@@ -406,5 +406,105 @@
   [
     "Commit ([0-9a-f]{7,40})",
     "提交 $1"
+  ],
+  [
+    "No contributions on January (\\d+)(?:st|nd|rd|th)\\.",
+    "1 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on February (\\d+)(?:st|nd|rd|th)\\.",
+    "2 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on March (\\d+)(?:st|nd|rd|th)\\.",
+    "3 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on April (\\d+)(?:st|nd|rd|th)\\.",
+    "4 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on May (\\d+)(?:st|nd|rd|th)\\.",
+    "5 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on June (\\d+)(?:st|nd|rd|th)\\.",
+    "6 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on July (\\d+)(?:st|nd|rd|th)\\.",
+    "7 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on August (\\d+)(?:st|nd|rd|th)\\.",
+    "8 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on September (\\d+)(?:st|nd|rd|th)\\.",
+    "9 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on October (\\d+)(?:st|nd|rd|th)\\.",
+    "10 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on November (\\d+)(?:st|nd|rd|th)\\.",
+    "11 月 $1 日没有贡献。"
+  ],
+  [
+    "No contributions on December (\\d+)(?:st|nd|rd|th)\\.",
+    "12 月 $1 日没有贡献。"
+  ],
+  [
+    "([A-Za-z][A-Za-z0-9+#. ]*): ([\\d.]+%)",
+    "$1：$2"
+  ],
+  [
+    "This contribution was made on January (\\d+)",
+    "此贡献于 1 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on February (\\d+)",
+    "此贡献于 2 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on March (\\d+)",
+    "此贡献于 3 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on April (\\d+)",
+    "此贡献于 4 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on May (\\d+)",
+    "此贡献于 5 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on June (\\d+)",
+    "此贡献于 6 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on July (\\d+)",
+    "此贡献于 7 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on August (\\d+)",
+    "此贡献于 8 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on September (\\d+)",
+    "此贡献于 9 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on October (\\d+)",
+    "此贡献于 10 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on November (\\d+)",
+    "此贡献于 11 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on December (\\d+)",
+    "此贡献于 12 月 $1 日完成"
   ]
 ]
