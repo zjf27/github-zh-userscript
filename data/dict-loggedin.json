@@ -26,7 +26,6 @@
   "Top repositories": "常用仓库",
   "Latest from GitHub": "GitHub 最新动态",
   "View changelog": "查看更新日志",
-
   "Open quick search dialog, type / to search": "打开快速搜索对话框，输入 / 进行搜索",
   "Open user navigation menu": "打开用户导航菜单",
   "Open Copilot…": "打开 Copilot…",
@@ -43,7 +42,6 @@
   "pull requests": "拉取请求",
   "issues": "议题",
   "issue": "议题",
-  "open": "打开",
   "state": "状态",
   "Pages": "页面",
   "Add file": "添加文件",

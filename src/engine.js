@@ -73,6 +73,8 @@
     let idx = 0;
     for (let i = 0; i < kids.length; i++) {
       const n = kids[i];
+      // React 会在文本与元素之间插入 <!-- --> 注释标记，跳过它，否则整句永远成不了模板
+      if (n.nodeType === 8) continue;
       if (n.nodeType === 3) {
         if (!n.nodeValue) continue;
         gaps[gaps.length - 1].push(n);

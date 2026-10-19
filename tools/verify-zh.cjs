@@ -106,6 +106,55 @@ const PAGE_CASES = [
     must: ['你可以创建发行版来打包软件', '可在我们的文档中了解关于发行版的更多信息'],
     mustNot: ['You can create a release to package software', 'Learn more about releases in'],
   },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/settings/copilot/code_review',
+    must: [
+      'Copilot 代码审查',
+      '配置 Copilot 代码审查',
+      '审查投入级别',
+      '允许 Copilot 审批拉取请求',
+      '管理 Copilot 代码审查自动化',
+      '查看所有规则集',
+      '自动化 Copilot 代码审查',
+      '为默认分支创建规则集',
+    ],
+    mustNot: [
+      'Configure Copilot code review',
+      'Review effort level',
+      'Manage Copilot code review automations',
+      'Create ruleset for default branch',
+      'View all rulesets',
+    ],
+  },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/network/dependencies',
+    must: ['依赖图已禁用', '启用依赖图', '代码频率', '活跃度'],
+    mustNot: [
+      'Dependency graph is disabled',
+      'Enable the dependency graph',
+      'Code frequency',
+    ],
+  },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/milestones',
+    must: ['新建里程碑', '创建里程碑', '使用里程碑为特定的发行版或项目创建议题和拉取请求的集合。', '你还没有创建任何里程碑。'],
+    mustNot: ['New milestone', 'Create a milestone', 'You haven'],
+  },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/milestones/new',
+    must: ['创建里程碑', '创建新里程碑，帮助整理你的议题和拉取请求。', '截止日期', '选择日期…'],
+    mustNot: ['Create milestone', 'Due date', 'Choose date'],
+  },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/settings/copilot/mcp',
+    must: ['模型上下文协议（MCP）', '支持的智能体', '保存 MCP 配置'],
+    mustNot: ['Save MCP configuration', 'Supported agents'],
+  },
+  {
+    url: 'https://github.com/copilot',
+    must: ['新建对话', '还没有对话'],
+    mustNot: ['New chat', 'No chats yet'],
+  },
 ];
 
 const SYNTH = [

@@ -180,6 +180,28 @@ const PAGES = [
   'https://github.com/zjf27?tab=followers',
   'https://github.com/zjf27?tab=following',
   'https://github.com/zjf27?tab=achievements',
+  // 仓库设置 → Copilot（0.3.0 漏采：copilot 子页整片英文）
+  'https://github.com/zjf27/github-zh-userscript/settings/copilot/code_review',
+  'https://github.com/zjf27/github-zh-userscript/settings/copilot/coding_agent',
+  'https://github.com/zjf27/github-zh-userscript/settings/copilot/cloud_agent',
+  'https://github.com/zjf27/github-zh-userscript/settings/copilot/internet_access',
+  'https://github.com/zjf27/github-zh-userscript/settings/copilot/mcp',
+  // 洞察系列（0.3.0 漏采：依赖图整页英文、侧栏 tab 英文）
+  'https://github.com/zjf27/github-zh-userscript/network',
+  'https://github.com/zjf27/github-zh-userscript/network/dependencies',
+  'https://github.com/zjf27/github-zh-userscript/network/updates',
+  'https://github.com/zjf27/github-zh-userscript/graphs/contributors',
+  'https://github.com/zjf27/github-zh-userscript/graphs/commit-activity',
+  'https://github.com/zjf27/github-zh-userscript/graphs/code-frequency',
+  'https://github.com/zjf27/github-zh-userscript/forks',
+  // 里程碑（0.3.0 漏采：整页英文）
+  'https://github.com/zjf27/github-zh-userscript/milestones',
+  'https://github.com/zjf27/github-zh-userscript/milestones/new',
+  // Copilot 会话中心（0.3.0 漏采：整页英文）
+  'https://github.com/copilot',
+  'https://github.com/copilot/sessions',
+  'https://github.com/copilot/agents',
+  'https://github.com/copilot/spaces',
 ];
 
 (async () => {
@@ -201,7 +223,9 @@ const PAGES = [
   }
   console.log('登录用户=' + who.login);
 
-  await ctx.addInitScript({ path: DIST });
+  // 不注入 dist：脚本会先把「独立成节点的片段」译掉（如 Copilot cloud agent），
+  // 导致含内联元素的整句 key 里混入中文而被判定丢弃。判定已译靠 look()，无需改 DOM。
+  void DIST;
 
   const pendingTpl = new Map();
   const pendingTxt = new Map();
@@ -224,6 +248,8 @@ const PAGES = [
           let idx = 0;
           for (let i = 0; i < kids.length; i++) {
             const n = kids[i];
+            // React 的 <!-- --> 注释标记，跳过（与 src/engine.js 保持一致）
+            if (n.nodeType === 8) continue;
             if (n.nodeType === 3) {
               if (!n.nodeValue) continue;
               gaps[gaps.length - 1].push(n);

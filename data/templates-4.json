@@ -1,0 +1,18 @@
+{
+ "When enabled, {0} cannot run a Copilot review within this repository.": "启用后，{0} 无法在此仓库中运行 Copilot 审查。",
+ "Copilot references {0} when reviewing pull requests.": "Copilot 在审查拉取请求时会参考 {0}。",
+ "Use rulesets to automatically request reviews and more. {0}": "使用规则集可以自动请求审查等。{0}",
+ "When enabled, Copilot can call MCP tools configured in {0} during code reviews.": "启用后，Copilot 可以在代码审查期间调用在 {0} 中配置的 MCP 工具。",
+ "With Copilot code review, you can add Copilot as a reviewer to your pull requests, including drafts. You can also select lines in Visual Studio Code and ask Copilot to review and comment on specific sections. {0}": "使用 Copilot 代码审查，你可以把 Copilot 添加为拉取请求的审查者，草稿也可以。你还可以在 Visual Studio Code 中选择代码行，让 Copilot 审查并评论特定部分。{0}",
+ "{0}You can configure Copilot cloud agent for other users with access to this repository, but you won't be able to assign tasks to Copilot because you don't have a Copilot Pro, Copilot Pro+, Copilot Business or Copilot Enterprise license.": "{0}你可以为有权访问此仓库的其他用户配置 Copilot 云代理，但你无法给 Copilot 分配任务，因为你不具备 Copilot Pro、Copilot Pro+、Copilot Business 或 Copilot Enterprise 许可证。",
+ "Enable firewall {0}": "启用防火墙 {0}",
+ "Allow access to locations frequently used to install tools, packages, and dependencies. {0}": "允许访问常用于安装工具、软件包和依赖项的位置。{0}",
+ "{0}This MCP configuration applies to Copilot cloud agent and Copilot code review. IDEs and Copilot CLI use their own MCP configuration.": "{0}此 MCP 配置适用于 Copilot 云代理和 Copilot 代码审查。IDE 和 Copilot CLI 使用它们自己的 MCP 配置。",
+ "Create a new milestone to help organize your issues and pull requests. Learn more about {0}.": "创建新里程碑，帮助整理你的议题和拉取请求。详细了解{0}。",
+ "Due date {0}": "截止日期 {0}",
+ "Forks are a great way to contribute to a repository. After {0}, you can send the original author a {1}.": "复刻是向仓库做贡献的好方法。在{0}之后，你可以向原作者发送{1}。",
+ "{0} Upgrade to GitHub Pro or make this repository public to enable all insights.": "{0}升级到 GitHub Pro 或将此仓库设为公开，以启用所有洞察功能。",
+ "{0} uses AI. Check for mistakes.": "{0} 使用 AI，请核对可能出现的错误。",
+ "Yours {0}": "我的 {0}",
+ "Shared with me {0}": "与我共享 {0}"
+}
