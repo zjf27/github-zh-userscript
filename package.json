@@ -1,0 +1,14 @@
+{
+  "name": "github-zh-userscript",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub 界面中文化用户脚本（原创实现，不翻译用户内容）",
+  "scripts": {
+    "collect": "node tools/collect.cjs",
+    "prepare": "node tools/prepare.cjs",
+    "merge": "node tools/merge.cjs",
+    "build": "node tools/build.cjs",
+    "verify": "node tools/verify.cjs"
+  },
+  "license": "MIT"
+}

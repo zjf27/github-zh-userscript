@@ -1,0 +1,7 @@
+node_modules/
+data/candidates.json
+data/summary.json
+data/parts/
+artifacts/
+*.log
+.DS_Store
