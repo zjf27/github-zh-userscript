@@ -9,10 +9,11 @@ user=$(printf '%s\n' "$creds" | sed -n 's/^username=//p')
 if [ -z "$tok" ] || [ -z "$user" ]; then echo "NO_TOKEN"; exit 2; fi
 echo "user=$user token_len=${#tok}"
 
+jq -n '{name:"github-zh-userscript", private:true, description:"GitHub 界面中文化用户脚本（原创实现，不翻译用户内容）"}' > /tmp/create_repo_req.json
 code=$(curl -sS -m 30 --ssl-no-revoke -o /tmp/create_repo.json -w '%{http_code}' -X POST \
   -H "Authorization: token $tok" -H 'Accept: application/vnd.github+json' -H 'Content-Type: application/json' \
-  https://api.github.com/user/repos \
-  -d '{"name":"github-zh-userscript","private":true,"description":"GitHub 界面中文化用户脚本（原创实现，不翻译用户内容）"}')
+  --data-binary @/tmp/create_repo_req.json \
+  https://api.github.com/user/repos)
 echo "create_repo_http=$code"
 head -c 200 /tmp/create_repo.json; echo
 
