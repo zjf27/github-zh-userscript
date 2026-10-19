@@ -46,7 +46,13 @@ const outPath = path.join(ROOT, 'dist', 'github-zh-userscript.user.js');
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, out, 'utf8');
 
+// 更新检查专用：只含元数据块，脚本管理器拉这个判断版本，够新才去拉完整脚本
+const metaOut = meta.trim() + '\n';
+const metaPath = path.join(ROOT, 'dist', 'github-zh-userscript.meta.js');
+fs.writeFileSync(metaPath, metaOut, 'utf8');
+
 const size = Buffer.byteLength(out, 'utf8');
+const metaSize = Buffer.byteLength(metaOut, 'utf8');
 console.log(
-  `BUILD_OK ${outPath} bytes=${size} dict=${Object.keys(dict).length} patterns=${patterns.length} templates=${Object.keys(templates).length}`
+  `BUILD_OK ${outPath} bytes=${size} dict=${Object.keys(dict).length} patterns=${patterns.length} templates=${Object.keys(templates).length} metaBytes=${metaSize}`
 );
