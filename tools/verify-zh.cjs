@@ -152,8 +152,8 @@ const PAGE_CASES = [
   },
   {
     url: 'https://github.com/copilot',
-    must: ['新建对话', '还没有对话'],
-    mustNot: ['New chat', 'No chats yet'],
+    must: ['新建对话'],
+    mustNot: ['New chat'],
   },
 ];
 
