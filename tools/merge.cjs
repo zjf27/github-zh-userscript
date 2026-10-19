@@ -9,6 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const FILES = [
   'dict-part-1.json', 'dict-part-2.json', 'dict-part-3.json', 'dict-part-4.json',
   'dict-manual.json',
+  'dict-additions.json',
 ];
 
 const merged = new Map();
