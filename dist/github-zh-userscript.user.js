@@ -11,6 +11,8 @@
 // @run-at       document-idle
 // @grant        GM_addStyle
 // @license      MIT
+// @updateURL    http://127.0.0.1:8899/dist/github-zh-userscript.user.js
+// @downloadURL  http://127.0.0.1:8899/dist/github-zh-userscript.user.js
 // @supportURL   https://github.com/zjf27/github-zh-userscript/issues
 // ==/UserScript==
 
