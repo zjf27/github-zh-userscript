@@ -16,8 +16,14 @@ function readJson(p, fallback) {
 }
 
 const dict = readJson(path.join(ROOT, 'data', 'dict.json'), {});
-const patterns = readJson(path.join(ROOT, 'data', 'patterns.json'), []);
-const templates = readJson(path.join(ROOT, 'data', 'templates.json'), {});
+const patterns = [
+  ...readJson(path.join(ROOT, 'data', 'patterns.json'), []),
+  ...readJson(path.join(ROOT, 'data', 'patterns-2.json'), []),
+];
+const templates = {
+  ...readJson(path.join(ROOT, 'data', 'templates.json'), {}),
+  ...readJson(path.join(ROOT, 'data', 'templates-2.json'), {}),
+};
 const meta = fs.readFileSync(path.join(ROOT, 'src', 'meta.txt'), 'utf8');
 let engine = fs.readFileSync(path.join(ROOT, 'src', 'engine.js'), 'utf8');
 

@@ -39,7 +39,7 @@
 
   function lookup(text) {
     const key = norm(text);
-    if (!key || key.length > 260) return null;
+    if (!key || key.length > 600) return null;
     if (!/[A-Za-z]/.test(key)) return null;
     if (Object.prototype.hasOwnProperty.call(DICT, key)) return DICT[key];
     for (let i = 0; i < PATTERNS.length; i++) {
@@ -78,6 +78,7 @@
         gaps[gaps.length - 1].push(n);
         key += n.nodeValue.replace(/\s+/g, ' ');
       } else if (n.nodeType === 1) {
+        if (n.tagName.toLowerCase() === 'svg') continue;
         if (!INLINE_TAGS[n.tagName]) return null;
         if (n.closest(SKIP)) return null;
         key += '{' + idx + '}';
@@ -89,7 +90,7 @@
     }
     if (idx === 0) return null;
     key = key.replace(/\s+/g, ' ').trim();
-    if (!key || key.length > 260 || !/[A-Za-z]/.test(key)) return null;
+    if (!key || key.length > 600 || !/[A-Za-z]/.test(key)) return null;
     return { key: key, gaps: gaps };
   }
 
