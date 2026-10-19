@@ -26,6 +26,7 @@ const FILES = [
   'dict-zh-5.json',
   'dict-zh-6.json',
   'dict-zh-7.json',
+  'dict-zh-8.json',
 ];
 
 const merged = new Map();

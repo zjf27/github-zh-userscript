@@ -70,6 +70,42 @@ const PAGE_CASES = [
     must: ['筛选审计日志'],
     mustNot: ['Filter audit logs'],
   },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/releases/new',
+    must: [
+      '新建发行版',
+      '发行版标题',
+      '发行版说明',
+      '标签建议',
+      '语义化版本',
+      '发布发行版',
+      '保存草稿',
+      '预发行版',
+      '选择标签',
+      '选择已有标签，或在发布此发行版时创建新标签。',
+      '如果未勾选「设为最新发行版」',
+      '新发布的发行版会自动标记为本仓库的最新发行版',
+      '如果你是第一次发布软件',
+      '通常做法是在版本名前面加上字母',
+      '如果这个标签不是用于生产环境',
+      '将二进制文件拖放到此处，或点击选择',
+    ],
+    mustNot: [
+      'New release',
+      'Release title',
+      'Release notes',
+      'Tagging suggestions',
+      'Publish release',
+      'Save draft',
+      'Semantic versioning',
+      'Choose an existing tag',
+    ],
+  },
+  {
+    url: 'https://github.com/zjf27/github-zh-userscript/releases',
+    must: ['你可以创建发行版来打包软件', '可在我们的文档中了解关于发行版的更多信息'],
+    mustNot: ['You can create a release to package software', 'Learn more about releases in'],
+  },
 ];
 
 const SYNTH = [

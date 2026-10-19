@@ -80,7 +80,8 @@
       } else if (n.nodeType === 1) {
         if (n.tagName.toLowerCase() === 'svg') continue;
         if (!INLINE_TAGS[n.tagName]) return null;
-        if (n.closest(SKIP)) return null;
+        // 行内 <code> 允许参与整句模板（其内部文本仍受 SKIP 保护，不会被翻译）
+        if (n.tagName !== 'CODE' && n.closest(SKIP)) return null;
         key += '{' + idx + '}';
         idx++;
         gaps.push([]);

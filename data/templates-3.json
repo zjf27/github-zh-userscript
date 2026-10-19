@@ -1,0 +1,14 @@
+{
+  "You can create a release to package software, along with release notes and links to binary files, for other people to use. Learn more about releases in {0}.": "你可以创建发行版来打包软件，并附上发行版说明与二进制文件链接，供他人使用。可在{0}中了解关于发行版的更多信息。",
+  "There was an error while loading. {0}.": "加载出错。{0}",
+  "This tag already has release notes. Would you like to {0}?": "此标签已有发行版说明。你想{0}吗？",
+  "If you’re new to releasing software, we highly recommend to {0}": "如果你是第一次发布软件，我们强烈建议你{0}",
+  "If 'Set as the latest release' is unchecked, the latest release will be determined by higher semantic version and creation date. {0}": "如果未勾选「设为最新发行版」，最新发行版将由更高的语义化版本号与创建日期决定。{0}",
+  "An attachment with that filename already exists. {0}": "已存在同名附件。{0}",
+  "We don’t support that file type. Try zipping it. {0}": "不支持该文件类型，请先压缩再试。{0}",
+  "Yowza, that’s a big file. {0}": "这个文件可真大。{0}",
+  "{0} with a file smaller than 2GB.": "{0}，文件需小于 2GB。",
+  "{0} with a file that’s not empty.": "{0}，文件不能为空。",
+  "It’s common practice to prefix your version names with the letter {0}. Some good tag names might be {1} or {2}.": "通常做法是在版本名前面加上字母 {0}。一些好的标签名可能是 {1} 或 {2}。",
+  "If the tag isn’t meant for production use, add a pre-release version after the version name. Some good pre-release versions might be {0} or {1}.": "如果这个标签不是用于生产环境，请在版本名后加上预发行版本号。一些好的预发行版本号可能是 {0} 或 {1}。"
+}

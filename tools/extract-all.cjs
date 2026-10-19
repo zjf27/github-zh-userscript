@@ -138,6 +138,48 @@ const PAGES = [
   'https://github.com/zjf27/github-zh-userscript/settings/access',
   'https://github.com/example/sample-repo',
   'https://github.com/POF-L/Fanqie-novel-Downloader',
+  // 发行版与标签（releases/new 是 0.2.0 整页漏采的页面）
+  'https://github.com/zjf27/github-zh-userscript/releases',
+  'https://github.com/zjf27/github-zh-userscript/releases/new',
+  'https://github.com/zjf27/github-zh-userscript/releases/new?tag=v0.3.0',
+  'https://github.com/zjf27/github-zh-userscript/tags',
+  // 仓库其他主要页
+  'https://github.com/zjf27/github-zh-userscript/branches',
+  'https://github.com/zjf27/github-zh-userscript/commits/main',
+  'https://github.com/zjf27/github-zh-userscript/blob/main/README.md',
+  'https://github.com/zjf27/github-zh-userscript/issues/new',
+  'https://github.com/zjf27/github-zh-userscript/compare',
+  'https://github.com/zjf27/github-zh-userscript/network/members',
+  'https://github.com/zjf27/github-zh-userscript/pulse',
+  'https://github.com/zjf27/github-zh-userscript/graphs/traffic',
+  'https://github.com/zjf27/github-zh-userscript/wiki',
+  'https://github.com/zjf27/github-zh-userscript/discussions',
+  'https://github.com/zjf27/github-zh-userscript/security',
+  'https://github.com/zjf27/github-zh-userscript/settings/actions',
+  'https://github.com/zjf27/github-zh-userscript/settings/secrets/actions',
+  'https://github.com/zjf27/github-zh-userscript/settings/environments',
+  'https://github.com/zjf27/github-zh-userscript/settings/pages',
+  'https://github.com/zjf27/github-zh-userscript/settings/webhooks',
+  'https://github.com/zjf27/github-zh-userscript/settings/dependabot',
+  'https://github.com/zjf27/github-zh-userscript/settings/notifications',
+  'https://github.com/zjf27/github-zh-userscript/settings/collaboration',
+  'https://github.com/zjf27/github-zh-userscript/settings/security_analysis',
+  'https://github.com/zjf27/github-zh-userscript/settings/tags',
+  'https://github.com/zjf27/github-zh-userscript/settings/rules',
+  'https://github.com/zjf27/github-zh-userscript/settings/autolinks',
+  'https://github.com/zjf27/github-zh-userscript/settings/access',
+  // 全站通用页
+  'https://github.com/explore',
+  'https://github.com/topics',
+  'https://github.com/trending',
+  'https://github.com/marketplace',
+  'https://github.com/sponsors',
+  'https://github.com/search',
+  'https://github.com/new/import',
+  'https://github.com/organizations/new',
+  'https://github.com/zjf27?tab=followers',
+  'https://github.com/zjf27?tab=following',
+  'https://github.com/zjf27?tab=achievements',
 ];
 
 (async () => {
@@ -189,7 +231,7 @@ const PAGES = [
             } else if (n.nodeType === 1) {
               if (n.tagName.toLowerCase() === 'svg') continue;
               if (!INLINE[n.tagName]) return null;
-              if (n.closest(SKIP)) return null;
+              if (n.tagName !== 'CODE' && n.closest(SKIP)) return null;
               key += '{' + idx + '}';
               idx++;
               gaps.push([]);
