@@ -16,6 +16,9 @@ const FILES = [
   'dict-loggedin-4.json',
   'dict-loggedin-5.json',
   'dict-loggedin-6.json',
+  'dict-loggedin-7.json',
+  'dict-loggedin-8.json',
+  'dict-loggedin-9.json',
 ];
 
 const merged = new Map();

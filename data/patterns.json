@@ -506,5 +506,93 @@
   [
     "This contribution was made on December (\\d+)",
     "此贡献于 12 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Jan (\\d+)",
+    "此贡献于 1 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Feb (\\d+)",
+    "此贡献于 2 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Mar (\\d+)",
+    "此贡献于 3 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Apr (\\d+)",
+    "此贡献于 4 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Jun (\\d+)",
+    "此贡献于 6 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Jul (\\d+)",
+    "此贡献于 7 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Aug (\\d+)",
+    "此贡献于 8 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Sep (\\d+)",
+    "此贡献于 9 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Oct (\\d+)",
+    "此贡献于 10 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Nov (\\d+)",
+    "此贡献于 11 月 $1 日完成"
+  ],
+  [
+    "This contribution was made on Dec (\\d+)",
+    "此贡献于 12 月 $1 日完成"
+  ],
+  [
+    "Reporting (.+) will contact Support about abuse on the application\\.",
+    "举报 $1 将联系支持团队处理该应用的滥用问题。"
+  ],
+  [
+    "(.+) will no longer be able to access your GitHub account\\. You cannot undo this action\\.",
+    "$1 将无法再访问你的 GitHub 账户。此操作无法撤销。"
+  ],
+  [
+    "Report (.+)",
+    "举报 $1"
+  ],
+  [
+    "Revoke (.+)",
+    "撤销 $1"
+  ],
+  [
+    "Last used within the last (\\d+) months? · Owned by",
+    "上次使用于最近 $1 个月内 · 所有者："
+  ],
+  [
+    "Gross metered usage for (.+)\\.",
+    "$1 的计量用量总额。"
+  ],
+  [
+    "Included usage discounts for (.+)\\.",
+    "$1 的所含用量折扣。"
+  ],
+  [
+    "Based on ([\\d,]+) additional AI credits beyond your included usage\\.",
+    "基于超出所含用量的 $1 个额外 AI 额度。"
+  ],
+  [
+    "(\\d+) applications?",
+    "$1 个应用"
+  ],
+  [
+    "Seen in (.+)",
+    "见于 $1"
+  ],
+  [
+    "View details of session from (.+) last accessed (.+)",
+    "查看来自 $1 的会话详情，上次访问 $2"
   ]
 ]

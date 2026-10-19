@@ -1,5 +1,5 @@
 /**
- * 构建：把词典与模式注入引擎，产出 dist/github-zh-userscript.user.js
+ * 构建：把词典、模式与跨节点模板注入引擎，产出 dist/github-zh-userscript.user.js
  * 用法：node tools/build.cjs
  */
 const fs = require('fs');
@@ -17,17 +17,17 @@ function readJson(p, fallback) {
 
 const dict = readJson(path.join(ROOT, 'data', 'dict.json'), {});
 const patterns = readJson(path.join(ROOT, 'data', 'patterns.json'), []);
+const templates = readJson(path.join(ROOT, 'data', 'templates.json'), {});
 const meta = fs.readFileSync(path.join(ROOT, 'src', 'meta.txt'), 'utf8');
 let engine = fs.readFileSync(path.join(ROOT, 'src', 'engine.js'), 'utf8');
 
-const dictJson = JSON.stringify(dict);
-const patternsJson = JSON.stringify(patterns);
-
 if (!engine.includes('/*__DICT__*/{}')) throw new Error('engine.js 缺少 __DICT__ 占位符');
 if (!engine.includes('/*__PATTERNS__*/[]')) throw new Error('engine.js 缺少 __PATTERNS__ 占位符');
+if (!engine.includes('/*__TEMPLATES__*/{}')) throw new Error('engine.js 缺少 __TEMPLATES__ 占位符');
 
-engine = engine.replace('/*__DICT__*/{}', () => dictJson);
-engine = engine.replace('/*__PATTERNS__*/[]', () => patternsJson);
+engine = engine.replace('/*__DICT__*/{}', () => JSON.stringify(dict));
+engine = engine.replace('/*__PATTERNS__*/[]', () => JSON.stringify(patterns));
+engine = engine.replace('/*__TEMPLATES__*/{}', () => JSON.stringify(templates));
 
 const out = meta.trim() + '\n\n' + engine;
 const outPath = path.join(ROOT, 'dist', 'github-zh-userscript.user.js');
@@ -35,4 +35,6 @@ fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, out, 'utf8');
 
 const size = Buffer.byteLength(out, 'utf8');
-console.log(`BUILD_OK ${outPath} bytes=${size} dict=${Object.keys(dict).length} patterns=${patterns.length}`);
+console.log(
+  `BUILD_OK ${outPath} bytes=${size} dict=${Object.keys(dict).length} patterns=${patterns.length} templates=${Object.keys(templates).length}`
+);

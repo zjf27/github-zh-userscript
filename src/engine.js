@@ -9,6 +9,8 @@
   const PATTERNS = /*__PATTERNS__*/[].map(function (p) {
     return [new RegExp('^(?:' + p[0] + ')$', 'i'), p[1]];
   });
+  // 跨节点模板：key 里的 {0} {1} 依次对应元素内的第 N 个内联元素
+  const TEMPLATES = /*__TEMPLATES__*/{};
 
   // 用户内容区域：不翻译（代码、评论、issue/PR 标题、用户名、仓库名等）
   const SKIP = [
@@ -23,6 +25,11 @@
     '[data-testid="issue-body"]', '[data-testid="comment-body"]'
   ].join(', ');
 
+  const INLINE_TAGS = {
+    A: 1, CODE: 1, STRONG: 1, EM: 1, B: 1, I: 1, KBD: 1, ABBR: 1,
+    TIME: 1, SPAN: 1, S: 1, DEL: 1, INS: 1, MARK: 1, SUB: 1, SUP: 1
+  };
+
   const ATTRS = ['placeholder', 'title', 'aria-label', 'alt'];
   const SPLIT_WS = /^(\s*)([\s\S]*?)(\s*)$/;
 
@@ -32,7 +39,7 @@
 
   function lookup(text) {
     const key = norm(text);
-    if (!key || key.length > 100) return null;
+    if (!key || key.length > 260) return null;
     if (!/[A-Za-z]/.test(key)) return null;
     if (Object.prototype.hasOwnProperty.call(DICT, key)) return DICT[key];
     for (let i = 0; i < PATTERNS.length; i++) {
@@ -56,6 +63,74 @@
     return !!(el.closest && el.closest(SKIP));
   }
 
+  // 读取结构模板：key 里 {i} 表示第 i 个内联元素，gaps[i] 是第 i 个间隙中的文本节点。
+  // 用「间隙」而非「文本段数」对齐，{0}{1} 相邻（如两个 <kbd> 挨着）时才不会错位。
+  // key 生成规则必须与 tools/harvest-templates.cjs 保持一致。
+  function readTemplate(el) {
+    const kids = el.childNodes;
+    const gaps = [[]];
+    let key = '';
+    let idx = 0;
+    for (let i = 0; i < kids.length; i++) {
+      const n = kids[i];
+      if (n.nodeType === 3) {
+        if (!n.nodeValue) continue;
+        gaps[gaps.length - 1].push(n);
+        key += n.nodeValue.replace(/\s+/g, ' ');
+      } else if (n.nodeType === 1) {
+        if (!INLINE_TAGS[n.tagName]) return null;
+        if (n.closest(SKIP)) return null;
+        key += '{' + idx + '}';
+        idx++;
+        gaps.push([]);
+      } else {
+        return null;
+      }
+    }
+    if (idx === 0) return null;
+    key = key.replace(/\s+/g, ' ').trim();
+    if (!key || key.length > 260 || !/[A-Za-z]/.test(key)) return null;
+    return { key: key, gaps: gaps };
+  }
+
+  const tplDone = new WeakSet();
+
+  function pushTemplate(el) {
+    if (tplDone.has(el)) return;
+    tplDone.add(el);
+    if (inSkip(el)) return;
+    const tpl = readTemplate(el);
+    if (!tpl) return;
+    if (!Object.prototype.hasOwnProperty.call(TEMPLATES, tpl.key)) return;
+    const zh = TEMPLATES[tpl.key];
+    const segs = [];
+    let last = 0;
+    const re = /\{(\d+)\}/g;
+    let m;
+    while ((m = re.exec(zh))) {
+      segs.push(zh.slice(last, m.index));
+      last = re.lastIndex;
+    }
+    segs.push(zh.slice(last));
+    // 占位符必须与原文内联元素一一对应；间隙里的多余文本节点一并清空，保持结构不变
+    if (segs.length !== tpl.gaps.length) return;
+    for (let g = 0; g < tpl.gaps.length; g++) {
+      const nodes = tpl.gaps[g];
+      if (!nodes.length) continue;
+      nodes[0].nodeValue = segs[g];
+      for (let k = 1; k < nodes.length; k++) nodes[k].nodeValue = '';
+    }
+  }
+
+  function translateTemplates(root) {
+    if (!root.querySelectorAll) return;
+    const els = root.querySelectorAll('a,code,strong,em,b,i,kbd,abbr,time,span');
+    for (let i = 0; i < els.length; i++) {
+      const p = els[i].parentElement;
+      if (p) pushTemplate(p);
+    }
+  }
+
   function translateRoot(root) {
     if (!root) return;
     if (root.nodeType === 3) {
@@ -65,6 +140,9 @@
     }
     if (root.nodeType !== 1 && root.nodeType !== 11) return;
     if (root.nodeType === 1 && inSkip(root)) return;
+
+    // 先做整句模板（跨节点），再做单节点，避免半句被单独替换
+    translateTemplates(root);
 
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
     const nodes = [];

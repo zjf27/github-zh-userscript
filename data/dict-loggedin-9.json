@@ -1,0 +1,5 @@
+{
+  "Plain text": "纯文本",
+  "Pasting a URL while having text selected will format to a Markdown link": "在有文本选中时粘贴 URL 将格式化为 Markdown 链接",
+  "Pasting a URL while having text selected will replace the text": "在有文本选中时粘贴 URL 将替换所选文本"
+}
