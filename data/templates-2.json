@@ -46,7 +46,6 @@
   "Enter a new username {0}": "输入新的用户名 {0}",
   "Connect a Patreon account for {0} to sponsor maintainers with. Get recognition on GitHub for sponsorships made on Patreon when the sponsored person has linked Patreon and GitHub, too, and has a public GitHub Sponsors profile.": "关联 {0} 的 Patreon 账户以赞助维护者。当赞助对象也已关联 Patreon 与 GitHub 并拥有公开的 GitHub Sponsors 主页时，你通过 Patreon 提供的赞助可获得 GitHub 上的认可。",
   "Export all repositories and profile metadata for {0}. Exports will be available for 7 days.": "导出 {0} 的所有仓库和个人资料元数据。导出数据将在 7 天内可用。",
-  "By clicking \"Add Successor\" below, I acknowledge that I am the owner of the @zjf27 account, and am authorizing GitHub to transfer content within that account to my GitHub Successor, {0}, in the event of my death. I understand that this appointment of a successor does not override legally binding next-of-kin rules or estate laws of any relevant jurisdiction, and does not create a binding will. {1}": "点击下方“添加继任者”即表示我确认自己是 @zjf27 账户的所有者，并授权 GitHub 在我去世时将该账户中的内容转移给 GitHub 继任者{0}。我理解，指定继任者不会凌驾于任何相关司法管辖区的法定近亲属规则或遗产法之上，也不会构成具有约束力的遗嘱。{1}",
   "We will {0}, along with all of your forks, wikis, issues, pull requests, and GitHub Pages sites.": "我们将{0}，以及你的所有复刻、wiki、议题、拉取请求和 GitHub Pages 站点。",
   "For more help, read our article \"{0}\".": "如需更多帮助，请阅读我们的文章“{0}”。",
   "To verify, type {0} exactly as it appears:": "要验证，请按原样输入 {0}：",

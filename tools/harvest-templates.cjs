@@ -18,6 +18,11 @@ const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'artifacts', 'templates-raw.json');
 const CDP = process.argv[2] || 'http://127.0.0.1:9222';
 
+/* 采集目标账号与仓库可用环境变量覆盖，默认指向公开示例仓库。 */
+const OWNER = process.env.GH_OWNER || 'maboloshi';
+const REPO = process.env.GH_REPO || 'github-chinese';
+const GH = 'https://github.com/' + OWNER;
+const GR = GH + '/' + REPO;
 const PAGES = [
   'https://github.com/dashboard',
   'https://github.com/notifications',
@@ -33,13 +38,13 @@ const PAGES = [
   'https://github.com/settings/organizations',
   'https://github.com/settings/billing',
   'https://github.com/settings/sessions',
-  'https://github.com/zjf27',
-  'https://github.com/zjf27?tab=repositories',
-  'https://github.com/zjf27/github-zh-userscript',
-  'https://github.com/zjf27/github-zh-userscript/settings',
-  'https://github.com/zjf27/github-zh-userscript/settings/actions',
-  'https://github.com/zjf27/github-zh-userscript/issues',
-  'https://github.com/zjf27/github-zh-userscript/pulls',
+  `${GH}`,
+  `${GH}?tab=repositories`,
+  `${GR}`,
+  `${GR}/settings`,
+  `${GR}/settings/actions`,
+  `${GR}/issues`,
+  `${GR}/pulls`,
   'https://github.com/new',
   'https://github.com/codespaces',
 ];

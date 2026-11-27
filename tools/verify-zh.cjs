@@ -22,12 +22,12 @@ const PAGE_CASES = [
   },
   {
     url: 'https://github.com/settings/packages',
-    must: ['软件包权限', '默认软件包设置', '已删除的软件包', '从源仓库继承访问权限', '未找到 zjf27 的可恢复软件包'],
+    must: ['软件包权限', '默认软件包设置', '已删除的软件包', '从源仓库继承访问权限', '的可恢复软件包'],
     mustNot: ['Packages permissions', 'No recoverable packages were found'],
   },
   {
     url: 'https://github.com/settings/admin',
-    must: ['更改你的用户名可能会产生', '导出 @zjf27 的所有仓库和个人资料元数据', '关联 @zjf27 的 Patreon 账户', '点击下方“添加继任者”', '想管理账户安全设置'],
+    must: ['更改你的用户名可能会产生', '的所有仓库和个人资料元数据', '的 Patreon 账户', '点击下方“添加继任者”', '想管理账户安全设置'],
     mustNot: ['Changing your username can have', 'Connect a Patreon account for', 'By clicking', 'Export all repositories and profile metadata for'],
   },
   {
@@ -71,7 +71,7 @@ const PAGE_CASES = [
     mustNot: ['Filter audit logs'],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/releases/new',
+    url: 'https://github.com/maboloshi/github-chinese/releases/new',
     must: [
       '新建发行版',
       '发行版标题',
@@ -102,12 +102,12 @@ const PAGE_CASES = [
     ],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/releases',
+    url: 'https://github.com/maboloshi/github-chinese/releases',
     must: ['你可以创建发行版来打包软件', '可在我们的文档中了解关于发行版的更多信息'],
     mustNot: ['You can create a release to package software', 'Learn more about releases in'],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/settings/copilot/code_review',
+    url: 'https://github.com/maboloshi/github-chinese/settings/copilot/code_review',
     must: [
       'Copilot 代码审查',
       '配置 Copilot 代码审查',
@@ -127,7 +127,7 @@ const PAGE_CASES = [
     ],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/network/dependencies',
+    url: 'https://github.com/maboloshi/github-chinese/network/dependencies',
     must: ['依赖图已禁用', '启用依赖图', '代码频率', '活跃度'],
     mustNot: [
       'Dependency graph is disabled',
@@ -136,17 +136,17 @@ const PAGE_CASES = [
     ],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/milestones',
+    url: 'https://github.com/maboloshi/github-chinese/milestones',
     must: ['新建里程碑', '创建里程碑', '使用里程碑为特定的发行版或项目创建议题和拉取请求的集合。', '你还没有创建任何里程碑。'],
     mustNot: ['New milestone', 'Create a milestone', 'You haven'],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/milestones/new',
+    url: 'https://github.com/maboloshi/github-chinese/milestones/new',
     must: ['创建里程碑', '创建新里程碑，帮助整理你的议题和拉取请求。', '截止日期', '选择日期…'],
     mustNot: ['Create milestone', 'Due date', 'Choose date'],
   },
   {
-    url: 'https://github.com/zjf27/github-zh-userscript/settings/copilot/mcp',
+    url: 'https://github.com/maboloshi/github-chinese/settings/copilot/mcp',
     must: ['模型上下文协议（MCP）', '支持的智能体', '保存 MCP 配置'],
     mustNot: ['Save MCP configuration', 'Supported agents'],
   },

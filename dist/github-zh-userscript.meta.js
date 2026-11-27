@@ -11,7 +11,7 @@
 // @run-at       document-idle
 // @grant        GM_addStyle
 // @license      GPL-3.0
-// @updateURL    http://127.0.0.1:8899/dist/github-zh-userscript.meta.js
-// @downloadURL  http://127.0.0.1:8899/dist/github-zh-userscript.user.js
+// @updateURL    https://raw.githubusercontent.com/zjf27/github-zh-userscript/main/dist/github-zh-userscript.meta.js
+// @downloadURL  https://raw.githubusercontent.com/zjf27/github-zh-userscript/main/dist/github-zh-userscript.user.js
 // @supportURL   https://github.com/zjf27/github-zh-userscript/issues
 // ==/UserScript==

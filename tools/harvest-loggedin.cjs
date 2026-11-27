@@ -37,6 +37,11 @@ function lookup(text) {
   return null;
 }
 
+/* 采集目标账号与仓库可用环境变量覆盖，默认指向公开示例仓库。 */
+const OWNER = process.env.GH_OWNER || 'maboloshi';
+const REPO = process.env.GH_REPO || 'github-chinese';
+const GH = 'https://github.com/' + OWNER;
+const GR = GH + '/' + REPO;
 const PAGES = [
   'https://github.com/dashboard',
   'https://github.com/notifications',
@@ -57,16 +62,15 @@ const PAGES = [
   'https://github.com/settings/billing',
   'https://github.com/settings/sessions',
   'https://github.com/settings/applications',
-  'https://github.com/zjf27',
-  'https://github.com/zjf27?tab=repositories',
-  'https://github.com/zjf27?tab=stars',
-  'https://github.com/zjf27/github-zh-userscript',
-  'https://github.com/zjf27/github-zh-userscript/issues',
-  'https://github.com/zjf27/github-zh-userscript/pulls',
-  'https://github.com/zjf27/github-zh-userscript/actions',
-  'https://github.com/zjf27/github-zh-userscript/settings',
-  'https://github.com/zjf27/github-zh-userscript/settings/branches',
-  'https://github.com/example/sample-repo',
+  `${GH}`,
+  `${GH}?tab=repositories`,
+  `${GH}?tab=stars`,
+  `${GR}`,
+  `${GR}/issues`,
+  `${GR}/pulls`,
+  `${GR}/actions`,
+  `${GR}/settings`,
+  `${GR}/settings/branches`,
   'https://github.com/POF-L/Fanqie-novel-Downloader',
 ];
 
