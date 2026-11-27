@@ -10,5 +10,5 @@
     "build": "node tools/build.cjs",
     "verify": "node tools/verify.cjs"
   },
-  "license": "MIT"
+  "license": "GPL-3.0-only"
 }

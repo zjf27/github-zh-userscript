@@ -65,5 +65,6 @@ node tools/verify.cjs   # 真机验证（需要本机可访问 GitHub）
 
 ## 词库与许可
 
-- 引擎代码与人工维护的词条：MIT。
-- `data/ref-dict.json` 派生自 maboloshi/github-chinese（GPL-3.0）的 `locals.js`，该数据文件按 GPL-3.0 分发，与 MIT 代码分开使用与分发。
+本项目整体以 [GNU General Public License v3.0](LICENSE) 发布，引擎代码、人工词条与派生词库同属一个许可。
+
+`data/ref-dict.json` 派生自 [maboloshi/github-chinese](https://github.com/maboloshi/github-chinese) 的 `locals.js`（上游同为 GPL-3.0），与本项目其余部分许可一致。

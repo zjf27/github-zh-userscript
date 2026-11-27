@@ -10,7 +10,7 @@
 // @match        https://gist.github.com/*
 // @run-at       document-idle
 // @grant        GM_addStyle
-// @license      MIT
+// @license      GPL-3.0
 // @updateURL    http://127.0.0.1:8899/dist/github-zh-userscript.meta.js
 // @downloadURL  http://127.0.0.1:8899/dist/github-zh-userscript.user.js
 // @supportURL   https://github.com/zjf27/github-zh-userscript/issues
