@@ -7,8 +7,19 @@
 
   const DICT = /*__DICT__*/{};
   const PATTERNS = /*__PATTERNS__*/[].map(function (p) {
-    return [new RegExp('^(?:' + p[0] + ')$', 'i'), p[1]];
+    return [new RegExp('^(?:' + p[0] + ')$', p[3] || 'i'), p[1], p[2] || ''];
   });
+  // 按必需字面量的前 3 个字符分桶：文本里没有该字面量的规则直接跳过，
+  // 否则每个文本节点都要跑上千条正则（参考词库带 1000+ 条规则）。
+  const PAT_INDEX = new Map();
+  const PAT_REST = [];
+  for (let i = 0; i < PATTERNS.length; i++) {
+    const p = PATTERNS[i];
+    if (!p[2]) { PAT_REST.push(p); continue; }
+    const bucket = p[2].slice(0, 3);
+    const list = PAT_INDEX.get(bucket);
+    if (list) list.push(p); else PAT_INDEX.set(bucket, [p]);
+  }
   // 跨节点模板：key 里的 {0} {1} 依次对应元素内的第 N 个内联元素
   const TEMPLATES = /*__TEMPLATES__*/{};
 
@@ -42,9 +53,23 @@
     if (!key || key.length > 600) return null;
     if (!/[A-Za-z]/.test(key)) return null;
     if (Object.prototype.hasOwnProperty.call(DICT, key)) return DICT[key];
-    for (let i = 0; i < PATTERNS.length; i++) {
-      const m = PATTERNS[i][0].exec(key);
-      if (m) return key.replace(PATTERNS[i][0], PATTERNS[i][1]);
+    const lower = key.toLowerCase();
+    const words = lower.match(/[a-z0-9']+/g) || [];
+    const tried = new Set();
+    for (let w = 0; w < words.length; w++) {
+      const list = PAT_INDEX.get(words[w].slice(0, 3));
+      if (!list) continue;
+      for (let i = 0; i < list.length; i++) {
+        const p = list[i];
+        if (tried.has(p)) continue;
+        tried.add(p);
+        if (p[2] && lower.indexOf(p[2]) < 0) continue;
+        if (p[0].test(key)) return key.replace(p[0], p[1]);
+      }
+    }
+    for (let i = 0; i < PAT_REST.length; i++) {
+      const p = PAT_REST[i];
+      if (p[0].test(key)) return key.replace(p[0], p[1]);
     }
     return null;
   }

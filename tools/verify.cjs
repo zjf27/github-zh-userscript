@@ -15,6 +15,8 @@ const DICT_PATH = path.join(ROOT, 'data', 'dict.json');
 if (!fs.existsSync(DIST)) { console.error('缺少产物 dist/github-zh-userscript.user.js，请先 build'); process.exit(2); }
 if (!fs.existsSync(DICT_PATH)) { console.error('缺少 data/dict.json，请先 merge'); process.exit(2); }
 const dict = JSON.parse(fs.readFileSync(DICT_PATH, 'utf8'));
+const REF_PATH = path.join(ROOT, 'data', 'ref-dict.json');
+const refDict = fs.existsSync(REF_PATH) ? (JSON.parse(fs.readFileSync(REF_PATH, 'utf8')).dict || {}) : {};
 const distSource = fs.readFileSync(DIST, 'utf8');
 
 const CHECKS = [
@@ -23,6 +25,8 @@ const CHECKS = [
   { name: 'repo_code', url: 'https://github.com/maboloshi/github-chinese', mustContain: ['拉取请求'], minCjk: 300 },
   { name: 'repo_issues', url: 'https://github.com/maboloshi/github-chinese/issues', mustContain: ['议题'], minCjk: 200 },
   { name: 'search', url: 'https://github.com/search?q=test&type=repositories', mustContain: ['仓库'], minCjk: 100 },
+  { name: 'repo_pulls', url: 'https://github.com/maboloshi/github-chinese/pulls', mustContain: ['拉取请求'], minCjk: 150 },
+  { name: 'trending', url: 'https://github.com/trending', mustContain: ['趋势'], minCjk: 100 },
 ];
 
 // 页面内审计逻辑内联在下面的 page.evaluate 中（不能跨上下文传函数）
@@ -37,9 +41,18 @@ const CHECKS = [
   await ctx.addInitScript({ path: DIST });
   const page = await ctx.newPage();
   const pageErrors = [];
-  page.on('pageerror', (e) => pageErrors.push(String(e && e.message || e).slice(0, 160)));
+  page.on('pageerror', (e) => {
+  const msg = String(e && e.message || e);
+  // 首页 hero 视频是 GitHub 自己的媒体加载失败，与脚本无关
+  if (/Hero video failed|media error/i.test(msg)) return;
+  pageErrors.push(msg.slice(0, 160));
+});
 
-  const dictKeys = new Set(Object.keys(dict));
+  // 只审计「译文与原文不同」的词条：品牌名（GitHub 等）原样保留不算漏译
+const dictKeys = new Set();
+for (const [k, v] of Object.entries({ ...dict, ...refDict })) {
+  if (k !== v) dictKeys.add(k);
+}
   let pass = 0;
   let fail = 0;
   const failures = [];
@@ -47,7 +60,7 @@ const CHECKS = [
   for (const c of CHECKS) {
     try {
       const resp = await page.goto(c.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForTimeout(2500);
+      await page.waitForTimeout(4000);
       const status = resp ? resp.status() : 0;
       const textInfo = await page.evaluate((words) => {
         const t = document.body.innerText || '';
@@ -85,7 +98,7 @@ const CHECKS = [
       const bad = auditResult.remain.length > 2 || textInfo.cjk < c.minCjk || textInfo.miss.length > 0 || !shadowOk;
       if (bad) {
         fail++;
-        failures.push({ name: c.name, status, remain: auditResult.remain, cjk: textInfo.cjk, miss: textInfo.miss });
+        failures.push({ name: c.name, status, remain: auditResult.remain, cjk: textInfo.cjk, miss: textInfo.miss, shadow: auditResult.shadowText });
         console.log(`[FAIL] ${c.name} status=${status} cjk=${textInfo.cjk} miss=${JSON.stringify(textInfo.miss)} remain=${JSON.stringify(auditResult.remain)}`);
       } else {
         pass++;

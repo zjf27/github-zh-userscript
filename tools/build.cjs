@@ -15,13 +15,32 @@ function readJson(p, fallback) {
   return JSON.parse(fs.readFileSync(p, 'utf8'));
 }
 
-const dict = readJson(path.join(ROOT, 'data', 'dict.json'), {});
-const patterns = [
+const localDict = readJson(path.join(ROOT, 'data', 'dict.json'), {});
+const ref = readJson(path.join(ROOT, 'data', 'ref-dict.json'), { dict: {}, patterns: [] });
+// 本地词典优先：同一 key 保留本仓库既有译法，避免参考词库覆盖术语表约定
+const dict = Object.assign({}, ref.dict, localDict);
+
+const localPatterns = [
   ...readJson(path.join(ROOT, 'data', 'patterns.json'), []),
   ...readJson(path.join(ROOT, 'data', 'patterns-2.json'), []),
   ...readJson(path.join(ROOT, 'data', 'patterns-3.json'), []),
   ...readJson(path.join(ROOT, 'data', 'patterns-4.json'), []),
 ];
+
+// 与 tools/import-ref.cjs 的 anchorOf 保持一致：取正则开头第一段必需字面量，
+// 引擎用它给规则分桶，避免每条文本都跑上千条正则。
+function anchorOf(source) {
+  const m = /^([A-Za-z][A-Za-z' ]{2,})/.exec(source);
+  if (m) return m[1].replace(/\s+/g, ' ').trim().toLowerCase();
+  const m2 = /([A-Za-z]{4,})/.exec(source);
+  return m2 ? m2[1].toLowerCase() : '';
+}
+
+const patterns = [
+  ...localPatterns.map((p) => [p[0], p[1], anchorOf(p[0]), 'i']),
+  ...ref.patterns.map((p) => [p[0], p[1], p[2] || '', p[3] || 'i']),
+];
+
 const templates = {
   ...readJson(path.join(ROOT, 'data', 'templates.json'), {}),
   ...readJson(path.join(ROOT, 'data', 'templates-2.json'), {}),
@@ -54,5 +73,7 @@ fs.writeFileSync(metaPath, metaOut, 'utf8');
 const size = Buffer.byteLength(out, 'utf8');
 const metaSize = Buffer.byteLength(metaOut, 'utf8');
 console.log(
-  `BUILD_OK ${outPath} bytes=${size} dict=${Object.keys(dict).length} patterns=${patterns.length} templates=${Object.keys(templates).length} metaBytes=${metaSize}`
+  'BUILD_OK ' + outPath + ' bytes=' + size + ' dict=' + Object.keys(dict).length +
+  ' patterns=' + patterns.length + ' templates=' + Object.keys(templates).length +
+  ' metaBytes=' + metaSize
 );
