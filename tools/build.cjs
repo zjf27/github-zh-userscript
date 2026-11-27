@@ -20,6 +20,12 @@ const ref = readJson(path.join(ROOT, 'data', 'ref-dict.json'), { dict: {}, patte
 // 本地词典优先：同一 key 保留本仓库既有译法，避免参考词库覆盖术语表约定
 const dict = Object.assign({}, ref.dict, localDict);
 
+// 空译法会把界面文本替换成空串（文字直接消失），必须在构建期拦下
+const emptyKeys = Object.keys(dict).filter((k) => typeof dict[k] !== 'string' || !dict[k].trim());
+if (emptyKeys.length) {
+  throw new Error('词典含空译法 ' + emptyKeys.length + ' 条：' + emptyKeys.slice(0, 5).join(', ') + '（先清洗数据）');
+}
+
 const localPatterns = [
   ...readJson(path.join(ROOT, 'data', 'patterns.json'), []),
   ...readJson(path.join(ROOT, 'data', 'patterns-2.json'), []),

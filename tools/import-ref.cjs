@@ -40,7 +40,7 @@ for (const name of Object.keys(pages).sort()) {
   const st = pages[name].static || {};
   for (const en of Object.keys(st)) {
     const zh = st[en];
-    if (typeof zh !== 'string' || !zh) continue;
+    if (typeof zh !== 'string' || !zh.trim()) continue;
     const key = norm(en);
     if (!key || key.length < 3 || !/[A-Za-z]{2}/.test(key)) continue;
     if (BLACKLIST.has(key)) continue;

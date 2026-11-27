@@ -188,7 +188,9 @@
     const attrs = root.querySelectorAll('[placeholder],[title],[aria-label],[alt]');
     for (let i = 0; i < attrs.length; i++) {
       const el = attrs[i];
-      if (inSkip(el)) continue;
+      // <svg class="octicon" aria-label="(opens in a new tab)"> 是无图标按钮的读屏文案，
+      // 只翻它自身的属性，不进入 svg 内部（内部图形文本仍受 SKIP 保护）
+      if (inSkip(el) && el.tagName.toLowerCase() !== 'svg') continue;
       for (let j = 0; j < ATTRS.length; j++) {
         const v = el.getAttribute(ATTRS[j]);
         if (!v) continue;

@@ -1,3 +1,18 @@
 [
-  ["Insights: (.+)", "洞察：$1"]
+ [
+  "Insights: (.+)",
+  "洞察：$1"
+ ],
+ [
+  "(\\d+) new stars this week",
+  "本周新增 $1 个星标"
+ ],
+ [
+  "(\\d+) new stars today",
+  "今日新增 $1 个星标"
+ ],
+ [
+  "([\\d,]+) pull requests merged each month",
+  "每月合并 $1 个拉取请求"
+ ]
 ]

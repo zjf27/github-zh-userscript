@@ -39,6 +39,8 @@ tools/import-ref.cjs    从参考 locals.js 导入页面词库
 tools/merge.cjs         合并词典、检测冲突
 tools/build.cjs         注入词典生成 dist 产物
 tools/verify.cjs        真机验证（Playwright）
+tools/audit.cjs         词库与产物体检（静态：空译法、脏键、正则反向引用、模板占位符、dist 版本一致性）
+tools/coverage.cjs      未翻译文本探测（打开真实页面收集残留英文，输出候选清单）
 dist/                   发布的用户脚本
 ```
 
@@ -49,6 +51,8 @@ node tools/import-ref.cjs <path-to-locals.js>   # 可选：从参考仓库重新
 node tools/merge.cjs    # 合并 data/dict-*.json → data/dict.json
 node tools/build.cjs    # 生成 dist/github-zh-userscript.user.js
 node tools/verify.cjs   # 真机验证（需要本机可访问 GitHub）
+node tools/audit.cjs    # 词库与产物体检，必须 AUDIT_OK（退出码 0）
+NODE_PATH=$(npm root -g) node tools/coverage.cjs --top 40   # 看还有哪些英文没翻
 ```
 
 `import-ref.cjs` 的输入是参考仓库 `gh-pages` 分支的 `locals.js`；仓库里已提交生成好的 `data/ref-dict.json`，日常构建不需要重跑这一步。
